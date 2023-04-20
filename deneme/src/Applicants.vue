@@ -8,35 +8,35 @@ export default {
         return {
             interns: [{
                 id: 1,
-                name: "Support Engineer",
+                name: "Support Engineer Intern",
                 applicationCount: "2",
                 department: "Support Team",
 
             },
             {
                 id: 2,
-                name: "FullStack Developer",
+                name: "Full Stack Developer Intern",
                 applicationCount: "5",
                 department: "Developer Team",
 
             },
             {
                 id: 3,
-                name: "Business Analyst",
+                name: "Business Analyst Intern",
                 applicationCount: "3",
                 department: "Project Management Team",
 
             },
             {
                 id: 4,
-                name: "Test Autiomation Developer",
+                name: "Test Autiomation Intern",
                 applicationCount: "2",
                 department: "Testing Team",
 
             },
             {
                 id: 5,
-                name: "Front-end Developer",
+                name: "Front-end Developer Intern",
                 applicationCount: "5",
                 department: "Development Team",
 
@@ -61,7 +61,7 @@ export default {
                     <tr>
                         <th scope="col" class="fs-5">#</th>
                         <th scope="col" class="fs-5">Name</th>
-                        <th scope="col" class="fs-5">Number of Applications</th>
+                        <th scope="col" class="fs-5">Number of Applicants</th>
                         <th scope="col" class="fs-5">Department</th>
                         <th scope="col" class="fs-5">Details</th>
                     </tr>
