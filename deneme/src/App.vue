@@ -9,25 +9,22 @@ export default {
 },
 data(){
   return{
-    NavCheck:false
+   
   }
 },
-methods:{
-  navbarCheck(){
-    if(this.$route.name === 'Welcome'){
-     NavCheck=true
-    }  
-  },
-}
 }
 </script>
 
 <template>
   <div>
-    <NavbarComponent v-if="navbarCheck" v-show="{NavCheck}"/>
+    <NavbarComponent v-show="$route.path !== '/'"/>
   </div>
-    <main>
+    <body class="d-flex flex-column h-100">
       <router-view></router-view>
       <Footer />
-    </main>
+    </body>
 </template>
+
+<style>
+
+</style>
