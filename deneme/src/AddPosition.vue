@@ -1,49 +1,42 @@
 <script>
 import PageTitle from './components/PageTitle.vue';
-
-export default{
-    components: { PageTitle }
+import Button from './components/Button.vue';
+export default {
+  components: { 
+    PageTitle,
+    Button,
+   }
 }
 </script>
 
 <template>
-  <PageTitle pageTitleValue="Add Position"/>
-  <div class="mx-5 mt-5 mb-4">
-    <div class="input-group mb-3">
-  <span class="input-group-text" id="basic-addon1">@</span>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-</div>
+  <PageTitle pageTitleValue="Add Position" />
+  <div class="mx-5 mt-4 mb-4">
+    <div class="mt-4">
+      <label class="mb-2 fs-5" for="positionName">Position Name</label>
+      <input id="positionName" type="text" class="form-control" placeholder="Position Name" aria-label="Username"
+        aria-describedby="basic-addon1">
+    </div>
 
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <span class="input-group-text" id="basic-addon2">@example.com</span>
-</div>
+    <div class="mt-4">
+      <label class="mb-2 fs-5" for="teamName">Related Team Name</label>
+      <input id="teamName" type="text" class="form-control" placeholder="Related Team Name" aria-label="Related Team Name"
+        aria-describedby="basic-addon2">
+    </div>
+    <div class="mt-4">
+      <label class="mb-2 fs-5" for="jobRequirements">Job Requriements</label>
+      <textarea id="jobRequirements" class="form-control" aria-label="With textarea"
+        placeholder="Job Requriements"></textarea>
+    </div>
 
-<div class="mb-3">
-  <label for="basic-url" class="form-label">Your vanity URL</label>
-  <div class="input-group">
-    <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+    <div class="mt-4">
+      <label class="mb-2 fs-5" for="jobDescription">Job Description</label>
+      <textarea id="jobDescription" class="form-control" aria-label="With textarea"
+        placeholder="Job Description"></textarea>
+    </div>
+
+    <div class="container-sm d-flex flex-column align-items-center justify-content-center mt-3 p-4">
+      <Button class="pt-2 px-3 fs-5" buttonText="Add Position"/>
+    </div>
   </div>
-  <div class="form-text" id="basic-addon4">Example help text goes outside the input group.</div>
-</div>
-
-<div class="input-group mb-3">
-  <span class="input-group-text">$</span>
-  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-  <span class="input-group-text">.00</span>
-</div>
-
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-  <span class="input-group-text">@</span>
-  <input type="text" class="form-control" placeholder="Server" aria-label="Server">
-</div>
-
-<div class="input-group">
-  <span class="input-group-text">With textarea</span>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
-</div>
-  </div>
-
 </template>
