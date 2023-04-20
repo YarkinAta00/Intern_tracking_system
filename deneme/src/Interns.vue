@@ -76,9 +76,11 @@ export default {
 methods: {
     goProfile() {
       //debugger
-
       this.$router.push('internprofile') 
-    }
+    },
+    goAddPosition(){
+                this.$router.push('addposition') 
+            }
   },
 }
 </script>
