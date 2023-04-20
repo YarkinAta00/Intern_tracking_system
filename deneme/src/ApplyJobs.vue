@@ -1,17 +1,23 @@
 <script>
 import PageTitle from './components/PageTitle.vue';
-
+import Button from './components/Button.vue';
 export default {
     components: {
-        PageTitle
-    }
+        PageTitle,
+        Button
+    },
+    methods: {
+    goAddPosition(){
+                this.$router.push('addposition') 
+            }
+  },
 }
 </script>
 <template>
     <div class="row md-10 mx-5"> 
         <PageTitle pageTitleValue="Open Positions" />
         <div class="col">
-            <button @click=" this.$router.push('addposition') " type="button" class="btn btn-primary px-4 py-2 mx-5 mt-5"> Add </button>
+            <Button @click="goAddPosition" class="px-4 pt-2 mx-5 mt-5" buttonText="Add"/>
         </div> 
     </div>
     <div class="col-md-10 mx-auto mt-5">
@@ -20,7 +26,7 @@ export default {
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                     <h5> Support Engineer </h5>
+                     <h5> Support Engineer Intern</h5>
                        
                     </button>
                 </h2>
@@ -45,6 +51,7 @@ export default {
                                 <p>Description</p>
                             </li>
                         </ul>
+                        <Button class="mt-3 px-3 pt-2" buttonText="Apply!"/>
                     </div>
                 </div>
             </div>
@@ -52,7 +59,7 @@ export default {
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <h5> Test Autiomation Developer </h5>
+                      <h5> Test Autiomation Intern</h5>
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -76,7 +83,7 @@ export default {
                                 <p>Description</p>
                             </li>
                         </ul>
-
+                        <Button class="mt-3 px-3 pt-2" buttonText="Apply!"/>
                     </div>
                 </div>
             </div>
@@ -84,7 +91,7 @@ export default {
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                           <h5> Full Stack Developer </h5>
+                           <h5> Full Stack Developer Intern </h5>
                             
                         </button>
                     </h2>
@@ -109,6 +116,7 @@ export default {
                                     <p>Description</p>
                                 </li>
                             </ul>
+                            <Button class="mt-3 px-3 pt-2" buttonText="Apply!"/>
                         </div>
                     </div>
                 </div>
@@ -116,7 +124,7 @@ export default {
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                           <h5> Business Analyst </h5>
+                           <h5> Business Analyst Intern </h5>
                            
                         </button>
                     </h2>
@@ -141,6 +149,7 @@ export default {
                                     <p>Description</p>
                                 </li>
                             </ul>
+                            <Button class="mt-3 px-3 pt-2" buttonText="Apply!"/>
                         </div>
                     </div>
                 </div>
@@ -148,7 +157,7 @@ export default {
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                           <h5> Front-end Developer </h5>
+                           <h5> Front-end Developer Intern</h5>
                           
                         </button>
                     </h2>
@@ -173,6 +182,7 @@ export default {
                                     <p>Description</p>
                                 </li>
                             </ul>
+                            <Button class="mt-3 px-3 pt-2" buttonText="Apply!"/>
                         </div>
                     </div>
                 </div>
