@@ -7,11 +7,6 @@ export default {
     NavbarComponent,
     Footer,
 },
-data(){
-  return{
-   
-  }
-},
 }
 </script>
 
