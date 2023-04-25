@@ -38,6 +38,11 @@ const router = createRouter({
       name: 'addPosition',
       component: () => import('../AddPosition.vue')
     },
+    {
+      path: '/applicationform',
+      name: 'applicationform',
+      component: () => import('../ApplicationForm.vue')
+    },
   ]
 })
 
