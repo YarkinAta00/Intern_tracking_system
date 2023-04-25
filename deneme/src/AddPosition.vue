@@ -2,10 +2,10 @@
 import PageTitle from './components/PageTitle.vue';
 import Button from './components/Button.vue';
 export default {
-  components: { 
+  components: {
     PageTitle,
     Button,
-   }
+  }
 }
 </script>
 
@@ -35,8 +35,15 @@ export default {
         placeholder="Job Description"></textarea>
     </div>
 
+    <select class="form-select mt-4" aria-label="Default select example">
+      <option selected>Degree</option>
+      <option value="1">Software Engineering</option>
+      <option value="2">Computer Engineering</option>
+      <option value="3">Electric and Electronics Engineering</option>
+    </select>
+
     <div class="container-sm d-flex flex-column align-items-center justify-content-center mt-3 p-4">
-      <Button class="pt-2 px-3 fs-5" buttonText="Add Position"/>
+      <Button class="pt-2 px-3 fs-5" buttonText="Add Position" />
     </div>
   </div>
 </template>
