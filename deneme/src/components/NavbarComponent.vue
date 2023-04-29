@@ -20,11 +20,15 @@ export default{
           <router-link to="/interns" class="nav-link active text-light fs-5 px-3" aria-current="page">Interns</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/tasks" class="nav-link active text-light fs-5 px-3" aria-current="page">Tasks</router-link>
+        </li>
+        <li class="nav-item">
           <router-link to="/applicants" class="nav-link active text-light fs-5 px-3" aria-current="page">Applicants</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/apply" class="nav-link active text-light fs-5 px-3" aria-current="page">Apply Now!</router-link>
         </li>
+       
       </ul>
     </div>
   </div>
