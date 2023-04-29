@@ -12,7 +12,7 @@ export default {
 
 <template>
   <div>
-    <NavbarComponent v-show="$route.path !== '/'"/>
+    <NavbarComponent v-show="$route.path !== '/' & $route.path !== '/register'"/>
   </div>
     <body class="d-flex flex-column h-100">
       <router-view></router-view>
