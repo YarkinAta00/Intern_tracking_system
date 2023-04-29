@@ -3,6 +3,7 @@ import Footer from './Footer.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import Textfield from './components/Textfield.vue'
+import axios from 'axios'
 
 export default {
   name: 'Welcome',
@@ -31,22 +32,27 @@ export default {
     login() {
       if (this.userInfo.email == "yarkinata@gmail.com" && this.userInfo.password == "123") {
         this.IsInfoTrue = true;
-        setTimeout(()=> this.$router.push({name:'Home'}),1600)
+        setTimeout(() => this.$router.push({ name: 'Home' }), 1600)
       }
       else {
         this.IsInfoTrue = false;
         alert("Invalid Username or Password")
-      }
+      } 
+    },
+    goRegisterPage() {
+      this.$router.push({ name: 'register' })
     }
   },
 }
 </script>
 
 <template>
-   <div v-if="IsInfoTrue == true" class="alert alert-success alert-dismissible fade show d-flex align-items-center justify-content-center mx-5 mt-4 w-70" role="alert">
-      <strong>Welcome!</strong> 
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+  <div v-if="IsInfoTrue == true"
+    class="alert alert-success alert-dismissible fade show d-flex align-items-center justify-content-center mx-5 mt-4 w-70"
+    role="alert">
+    <strong>Welcome!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 
   <div id="main-container"
     class="container-sm d-flex flex-column align-items-center justify-content-center border border-4 border-dark rounded mt-5 p-4">
@@ -60,7 +66,7 @@ export default {
       <br>
     </div>
 
-    <form class="inputs">
+    <form class="inputs form-controll">
       <!--
                v-model sayesinde event handler kullanmamıza gerek kalmıyor 
                v-model Sadece text inputunda değil bütün input tiplerinde çalışır (radio button, checkbox and etc.)
@@ -72,6 +78,7 @@ export default {
       Admin paneli
       Api için veritabanı tablo tasarımlarına başladım
                 -->
+     
       <Textfield label="Email" type="email" id="emailInput" v-model="userInfo.email" class="form-control" />
 
       <br>
@@ -83,7 +90,7 @@ export default {
     </form>
     <div class="mt-4">
       <Button @click="login" buttonText="Login" />
-      <Button buttonText="Register" />
+      <Button @click="goRegisterPage" buttonText="Register" />
     </div>
   </div>
   <br>
