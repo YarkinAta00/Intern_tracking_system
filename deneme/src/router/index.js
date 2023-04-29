@@ -43,6 +43,16 @@ const router = createRouter({
       name: 'applicationform',
       component: () => import('../ApplicationForm.vue')
     },
+    {
+      path: '/tasks',
+      name: 'tasks',
+      component: () => import('../Tasks.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../Register.vue')
+    },
   ]
 })
 
