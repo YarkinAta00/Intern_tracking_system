@@ -5,14 +5,28 @@
             <table class=" table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" class="fs-5">#</th>
+                        <th scope="col" class="fs-5">ID</th>
                         <th scope="col" class="fs-5">Name</th>
                         <th scope="col" class="fs-5">Surname</th>
-                        <th scope="col" class="fs-5">Department</th>
+                        <th scope="col" class="fs-5">Email</th>
+                        <th scope="col" class="fs-5">DepartmantID</th>
+                        <th scope="col" class="fs-5">RoleID</th>
                         <th scope="col" class="fs-5">Details</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
+                    <tr v-for="dbIntern in dbInterns">
+                        <td class="fs-5" > {{ dbIntern.id }}</td>
+                        <td class="fs-5">{{ dbIntern.firstName }}</td>
+                        <td class="fs-5" >{{ dbIntern.lastName }}</td>
+                        <td class="fs-5" >{{  dbIntern.email}}</td>
+                        <td class="fs-5" >{{  dbIntern.depID}}</td>
+                        <td class="fs-5" >{{  dbIntern.roleID}}</td>
+                        <td class="fs-5">
+                            <Button @click="goProfile" buttonText="Detail"/>
+                        </td>
+                    </tr>   
+                    <!--
                     <tr v-for="(intern, index) in interns">
                         <td class="fs-5" v-text="intern.id"></td>
                         <td class="fs-5" v-text="intern.name"></td>
@@ -21,7 +35,9 @@
                         <td>
                             <Button @click="goProfile" buttonText="Detail"/>
                         </td>
-                    </tr>
+                    </tr>   
+                    -->
+                   
                 </tbody>
             </table>
           </div>
@@ -33,9 +49,11 @@ import Button from './components/Button.vue'
 import ProfileNavigateButton from './components/ProfileNavigateButton.vue'
 import Footer from './Footer.vue'
 import PageTitle from './components/PageTitle.vue'
+import axios from 'axios'
 export default {
     data() {
         return {
+            dbInterns:{},
             interns: [{
                 id: 1,
                 name: "Yarkın",
@@ -65,6 +83,13 @@ export default {
 
             },],
         }
+    },
+    mounted(){
+        axios.get("https://localhost:7270/api/InternshipTracker/GetUsers")
+        .then((response)=>{
+            this.dbInterns=response.data
+          console.log(response.data)
+        })
     },
     components: {
     Footer,
