@@ -29,7 +29,7 @@ const router = createRouter({
       component: () => import('../ApplyJobs.vue')
     },
     {
-      path: '/internprofile',
+      path: '/internprofile/:id',
       name: 'InternProfile',
       component: () => import('../InternProfile.vue')
     },
