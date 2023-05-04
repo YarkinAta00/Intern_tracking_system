@@ -4,9 +4,22 @@ import PageTitle from './components/PageTitle.vue';
 import ProfilePhoto from './components/ProfilePhoto.vue';
 import Footer from './Footer.vue';
 import PopupModel from './components/PopupModel.vue';
+import axios from 'axios';
 export default {
-    //CV görebilceğimiz ekran popup olabilir
-   
+    data(){
+        return{
+            id:"",
+            userInfo:{},
+        }
+    },
+    created(){
+        this.id=this.$route.params.id
+        axios.get(`https://localhost:7270/api/InternshipTracker/GetById?id=${this.id}`)
+        .then(response => {
+            this.userInfo=response.data,
+            console.log(response)
+        }).catch(error => { console.log(error) });
+    },
     components: {
         Footer,
         Button,
@@ -25,7 +38,7 @@ export default {
                 <div class="card text-bg-light mb-4" style="width: 18rem;">
                     <ProfilePhoto class="card-img-top" />
                     <div class="card-body">
-                        <h5 class="card-title">Name Surname</h5>
+                        <h5 class="card-title">{{ userInfo.firsName }} {{ userInfo.lastName }}</h5>
                         <p class="card-text">Little description here</p>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -65,7 +78,7 @@ export default {
                     <h5 class="card-header">Contact Information</h5>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Email:</li>
+                            <li class="list-group-item fs-6">Email: {{ userInfo.email }}</li>
                             <li class="list-group-item">Phone number:</li>
                             <li class="list-group-item">Home Address:</li>
                         </ul>
