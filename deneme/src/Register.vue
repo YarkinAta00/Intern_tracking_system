@@ -15,16 +15,11 @@ export default {
             emailInput: "",
             passwordInput: "",
             IsInfoTrue: false,
-            userInfo:{
-                firstName:"",
-                lastName:"",
-                email: "",
-                password: "",
-                gender:"",
-            }   
-            
-
-               
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            gender: "",
         }
     },
     components: {
@@ -34,13 +29,13 @@ export default {
         Footer,
     },
     methods: {
-       register(){
-         axios.post("https://localhost:7270/api/InternshipTracker/Register",this.userInfo)
-         .then(response=>{
-            console.log(response)
-         })
-       }
-
+        register() {
+            //https://localhost:7270/api/InternshipTracker/Register?firstName=Bertan&lastName=Silleli&Email=brtnsll%40gmail.com&Password=123&gender=e
+            axios.post(`https://localhost:7270/api/InternshipTracker/Register?firstName=${this.firstName}&lastName=${this.lastName}&Email=${this.email}&Password=${this.password}&gender=${this.gender}`)
+                .then(response => {
+                    console.log(response)
+                })
+        }
     },
 }
 </script>
@@ -56,7 +51,7 @@ export default {
     <div id="main-container"
         class="container-sm d-flex flex-column align-items-center justify-content-center border border-4 border-dark rounded mt-5 p-4">
         <div>
-            <img alt="Intern Logo" :class="mainImage" :src="image" />
+            <img alt="Intern Logo" :src="image" />
         </div>
         <div class="heading mt-3">
             <h2 :class="titleClass">
@@ -66,45 +61,33 @@ export default {
         </div>
 
         <form class="inputs form-controll">
-            <!--
-               v-model sayesinde event handler kullanmamıza gerek kalmıyor 
-               v-model Sadece text inputunda değil bütün input tiplerinde çalışır (radio button, checkbox and etc.)
-          
-      Login sistemi düzeltildi!
-      CV yükleme sistemi tasarlandı
-      Başvuru sistemi tasarımı yapıldı
-      Gün sayacı ( Stajyerlerin kaç günü kaldı) 
-      Admin paneli
-      Api için veritabanı tablo tasarımlarına başladım
-                -->
             <div class="row ">
                 <div class="col">
-                    <Textfield label="Name" type="email" id="NameInput" v-model="userInfo.firstName" class="form-control" />
-                    {{userInfo.firstName}}
+                    <Textfield label="Name" type="email" id="NameInput" v-model="firstName" class="form-control" />
+                    {{ firstName }}
                     <br>
-                    <Textfield label="Surname" type="email" id="SurnameInput" v-model="userInfo.lastName" class="form-control" />
-                    {{ userInfo.lastName }}
+                    <Textfield label="Surname" type="email" id="SurnameInput" v-model="lastName"
+                        class="form-control" />
+                    {{ lastName }}
                     <br>
-                    <Textfield label="Gender" type="email" id="GenderInput" v-model="userInfo.gender" class="form-control" />
-                    {{ userInfo.gender }}
+                    <Textfield label="Gender" type="email" id="GenderInput" v-model="gender"
+                        class="form-control" />
+                    {{ gender }}
                 </div>
 
                 <div class="col">
-                    <Textfield label="Email" type="email" id="emailInput" v-model="userInfo.email" class="form-control" />
-                    {{ userInfo.email }}
+                    <Textfield label="Email" type="email" id="emailInput" v-model="email" class="form-control" />
+                    {{ email }}
                     <br>
-                    <Textfield label="Password" type="password" id="passwordInput" v-model="userInfo.password"
+                    <Textfield label="Password" type="password" id="passwordInput" v-model="password"
                         class="form-control" aria-labelledby="passwordHelpBlock" />
-                        {{ userInfo.password }}
+                    {{ password }}
                 </div>
             </div>
-            
+
             <div class="d-flex flex-column align-items-center justify-content-center">
-                    <Checkbox label="Check me out" />
-                </div>
-
-
-         
+                <Checkbox label="Check me out" />
+            </div>
         </form>
         <div class="mt-4">
             <Button @click="register" buttonText="Register" />
