@@ -19,10 +19,12 @@ export default {
 }
 </script>
 <template>
-    <div class="row md-10 mx-5">
-        <PageTitle pageTitleValue="Open Positions" />
-        <div class="col">
-            <Button @click="goAddPosition" class="px-4 pt-2 mx-5 mt-5" buttonText="Add" />
+    <div class="row md-10 mx-5 px-5">
+        <div class="col-9">
+            <PageTitle pageTitleValue="Open Positions" />
+        </div>
+        <div class="col-3">
+            <Button @click="goAddPosition" class="px-5 pt-2 mx-5 mt-5 fs-6" buttonText="Add" />
         </div>
     </div>
     <div class="col-md-10 mx-auto mt-5">
