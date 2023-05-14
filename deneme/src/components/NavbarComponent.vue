@@ -6,7 +6,7 @@ export default{
 </script>
 <template>
    <nav class="navbar navbar-expand-lg bg-primary">
-  <div class="container-fluid">
+  <div class="container-fluid d-flex justify-content-between">
     <router-link to="/" class="navbar-brand fs-2 fw-bold px-3 text-light">ITS</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
