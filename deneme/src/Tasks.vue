@@ -40,30 +40,30 @@ export default {
     <div>
         <PageTitle pageTitleValue="Tasks" />
     </div>
-    <div class=" container d-flex align-items-center  justify-content-center mb-4">
+    <div class="container d-flex align-items-center  justify-content-center mb-4">
         <table class="table table-striped table-hover table-responsive">
             <thead>
                 <tr>
-                    <th scope="col" class="fs-5">ID</th>
-                    <th scope="col" class="fs-5">Task Name</th>
-                    <th scope="col" class="fs-5">Task Sender</th>
-                    <th scope="col" class="fs-5">Task Details</th>
-                    <th scope="col" class="fs-5">Task Details</th>
-                    <th scope="col" class="fs-5">Complete Task</th>
+                    <th scope="col" class="fs-5 px-4">#</th>
+                    <th scope="col" class="fs-5 px-4">Task Name</th>
+                    <th scope="col" class="fs-5 px-4">Task Sender</th>
+                    <th scope="col" class="fs-5 px-4">Task Details</th>
+                    <th scope="col" class="fs-5 px-4">Task Details</th>
+                    <th scope="col" class="fs-5 px-4">Complete Task</th>
 
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 <tr v-for="task in taskList">
-                    <td class="fs-5">{{ task.id }}</td>
-                    <td class="fs-5">{{ task.taskName }}</td>
-                    <td class="fs-5">{{ task.taskSender }}</td>
-                    <td class="fs-5">{{ task.taskDetails }}</td>
-                    <td class="fs-5">
-                        <Button buttonText="Details" />
+                    <td class="fs-5 px-4">{{ task.id }}</td>
+                    <td class="fs-5 px-4">{{ task.taskName }}</td>
+                    <td class="fs-5 px-4">{{ task.taskSender }}</td>
+                    <td class="fs-5 px-4">{{ task.taskDetails }}</td>
+                    <td class="fs-5 px-4">
+                        <button class="btn btn-primary px-4 mx-3"><i class="bi bi-info-lg px-2" style="font-size: 1.3rem;"></i></button>
                     </td>
                     <td class="fs-5">
-                        <Button class="btn btn-success" buttonText="Complete" />
+                        <button class="btn btn-success px-4 mx-3"><i class="bi bi-check-lg" style="font-size: 1.3rem;"></i></button>
                     </td>
                 </tr>
             </tbody>
