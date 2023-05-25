@@ -28,15 +28,17 @@ export default {
       axios.post(`https://localhost:7270/api/InternshipTracker/Login?email=${this.email}&password=${this.password}`)
         .then(response => {
           console.log(response.data);
+          const mytoken=response.data;
+          localStorage.setItem('JWTtoken', mytoken);
+          console.log((localStorage.getItem('JWTtoken')));
           this.IsInfoTrue = true;
-          setTimeout(() => this.$router.push({ path: `Home` }), 1600)
+          setTimeout(() => this.$router.push({ path: `Home` }), 1600);
         }).catch(error => {
           console.log(error);
           this.IsInfoTrue = false;
           alert("Invalid Username or Password");
         });
     },
-   
     goRegisterPage() {
       this.$router.push({ name: 'register' })
     },

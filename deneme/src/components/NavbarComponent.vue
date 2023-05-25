@@ -1,6 +1,11 @@
 <script>
 export default{
-  
+  methods:{
+    logout(){
+      localStorage.removeItem('JWTtoken');
+      this.$router.push('/');
+    }
+  }
   
 }
 </script>
@@ -28,7 +33,11 @@ export default{
         <li class="nav-item">
           <router-link to="/apply" class="nav-link active text-light fs-5 px-3" aria-current="page">Apply Now!</router-link>
         </li>
-       
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button type="button" @click="logout" class="btn btn-warning fs-6 px-3">Logout!</button>
+        </li>
       </ul>
     </div>
   </div>

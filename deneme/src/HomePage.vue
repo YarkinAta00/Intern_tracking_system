@@ -6,7 +6,9 @@ import * as chartConfig from './chartConfig.js'
 import PageTitle from './components/PageTitle.vue';
 import Button from './components/Button.vue'
 import axios from 'axios';
+
 ChartJS.register(ArcElement, Tooltip, Legend)
+
 
 export default {
   components: {
@@ -15,35 +17,41 @@ export default {
     Button,
   },
   data() {
-   return chartConfig
- 
+    return {
+      userInfo: {},
+      authAxios: axios.create({
+        baseURL: `https://localhost:7270/api/`,
+        headers: {
+          Authorization: 'Bearer ' + (localStorage.getItem('JWTtoken')),
+        }
+      })
+    }
   },
-  methods:{
-      getPosts(){
-        axios.get("https://localhost:7270/api/InternshipTracker/GetUsers")
-        .then((response)=>{
-          console.log(response.data)
-        })
-        /*
-       const apiUrl= "https://localhost:7270/api";
-          fetch(apiUrl,{
-            method:"GetUsers"
-          }).then(response => response.json())
-          .then(postsFromServer=> {
-            console.log(postsFromServer);
-            setPosts(postsFromServer);
-          }).catch((error) =>{
-            console.log(error);
-            alert(error);
-          }); */
-      }
-  }
+  computed: {
+    data() {
+      return chartConfig.data
+    },
+    options() {
+      return chartConfig.options
+    },
+  },
+  created() {
+    this.authAxios.get("InternshipTracker/GetAuthorizedUser")
+      .then((response) => {
+        this.userInfo = response.data
+        console.log(response.data)
+        const gettoken = localStorage.getItem('JWTtoken');
+        console.log(gettoken);
+      }).catch(error => { console.log(error) });
+  },
+
 };
+
 </script>
 <template>
   <div>
     <div class="row mt-4">
-      <PageTitle pageTitleValue="Welcome YARKIN ATA" />
+      <PageTitle pageTitleValue="Welcome" :pageUserName= userInfo.userName  />
     </div>
 
     <div class="hstack px-5 mt-5 gap-5">
@@ -51,28 +59,12 @@ export default {
 
       </div>
       <div>
+
         <Doughnut :width="400" :height="400" :data="data" :options="options" id="internChart" />
       </div>
-       
-      <div class="vr"></div>
-      <Button @click="getPosts" buttonText="GET"/>
 
-<!--
-<div class="overflow-auto">
- <div class="card mb-3">
-          <div class="card-header">
-            <h5 class="card-title">Task Title</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Tasdk details will be shown here...</p>
-            <div class="d-flex justify-content-between pt-4">
-              <a href="#" class="  btn btn-warning px-4">Pass</a>
-              <a href="#" class="  btn btn-success px-3">Completed</a>
-            </div>
-          </div>
-        </div>
-</div>
--->
+      <div class="vr"></div>
+
     </div>
   </div>
 </template>

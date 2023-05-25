@@ -7,13 +7,16 @@ export default {
     PageTitle,
     Button,
     DropdownMenu,
-}
+  }
 }
 </script>
 
 <template>
-  <PageTitle pageTitleValue="Add Position" />
-  <div class="mx-5 mt-4 mb-4">
+  <div class="row md-10">
+        <PageTitle pageTitleValue="Add Position" />
+    </div>
+  
+  <div class=" container fluid mx-5 mt-4 mb-4">
     <div class="mt-4">
       <label class="mb-2 fs-5" for="positionName">Position Name</label>
       <input id="positionName" type="text" class="form-control" placeholder="Position Name" aria-label="Username"
@@ -37,8 +40,10 @@ export default {
         placeholder="Job Description"></textarea>
     </div>
 
-    <DropdownMenu defaultSelect="Degrees"/>
-
+    <div class="mt-4">
+      <label class="mb-2 fs-5">Degrees</label>
+      <DropdownMenu defaultSelect="Degrees" />
+    </div>
 
     <div class="container-sm d-flex flex-column align-items-center justify-content-center mt-3 p-4">
       <Button class="pt-2 px-3 fs-5" buttonText="Add Position" />

@@ -6,7 +6,7 @@ props:{
         default:()=>"",
     },
     pageUserName:{
-        
+        type:Object,
     },
 },
 }

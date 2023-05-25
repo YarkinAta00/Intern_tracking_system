@@ -1,7 +1,6 @@
 <script>
 import Button from './components/Button.vue'
 import PageTitle from './components/PageTitle.vue';
-import Footer from './Footer.vue'
 export default {
 
     data() {
@@ -45,7 +44,6 @@ export default {
         }
     },
     components: {
-    Footer,
     Button,
     PageTitle
 }
@@ -73,7 +71,7 @@ export default {
                         <td class="fs-5" v-text="intern.applicationCount"></td>
                         <td class="fs-5" v-text="intern.department"></td>
                         <td>
-                            <Button buttonText="Show"/>
+                            <button class="btn btn-primary px-4 mx-3"><i class="bi bi-info-lg px-2" style="font-size: 1.3rem;"></i></button>
                         </td>
                     </tr>
                 </tbody>

@@ -3,9 +3,16 @@ import NavbarComponent from './components/NavbarComponent.vue';
 import Footer from './components/Footer.vue';
 export default {
   name:'App',
+
   components:{
     NavbarComponent,
     Footer,
+},
+methods: {
+  logout() {
+    localStorage.removeItem('JWTtoken');
+    this.$router.push('/');
+  }
 },
 }
 </script>
