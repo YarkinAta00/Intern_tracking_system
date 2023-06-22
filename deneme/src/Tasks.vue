@@ -38,7 +38,7 @@ export default {
             <Button @click="goAddTasks" class="px-5 pt-2 mx-5 mt-5 fs-6" buttonText="Add" />
         </div>
     </div>
-    <div class="container d-flex align-items-center  justify-content-center mb-4">
+    <div class="container d-flex align-items-center justify-content-center mb-4 mt-3">
         <table class="table table-striped table-hover table-responsive">
             <thead>
                 <tr>

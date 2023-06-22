@@ -23,7 +23,7 @@ methods: {
   </div>
     <body class="d-flex flex-column h-100">
       <router-view></router-view>
-      <Footer />
+      <Footer v-show="$route.path !== '/' & $route.path !== '/register'" />
     </body>
 </template>
 

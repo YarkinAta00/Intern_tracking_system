@@ -70,12 +70,12 @@ export default {
     <form class="inputs form-controll">
 
       <Textfield label="Email" type="email" id="emailInput" v-model="email" class="form-control mt-1" />
-      {{ email }}
+     
       <br>
 
       <Textfield label="Password" type="password" id="passwordInput" v-model="password" class="form-control mt-1"
         aria-labelledby="passwordHelpBlock" />
-      {{ password }}
+      
       <Checkbox label="Check me out" />
     </form>
     <div class="mt-4">

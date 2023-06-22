@@ -4,6 +4,7 @@ import PageTitle from './components/PageTitle.vue';
 import ProfilePhoto from './components/ProfilePhoto.vue';
 import PopupModel from './components/PopupModel.vue';
 import axios from 'axios';
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -13,9 +14,11 @@ export default {
             isReadOnly: true,
             isVisible: true,
             changePasswordType: "password",
-            startDate: "",
-            endDate: "",
+            startDate: null,
+            endDate: null,
+            currentDate: moment().format('YYYY-MM-DD'),
             selectedFile: null,
+            daysDifference: null,
         }
     },
     created() {
@@ -23,10 +26,15 @@ export default {
         axios.get(this.baseURL + `InternshipTracker/GetById?id=${this.id}`)
             .then(response => {
                 this.userInfo = response.data,
-                    console.log(response)
+                    console.log(response),
+                    this.startDate = moment(response.data.startDate),
+                    console.log(this.startDate),
+                    this.endDate = moment(response.data.endDate),
+                    console.log(this.endDate),
+                    this.calculateDaysDifference();
             }).catch(error => { console.log(error) });
-
     },
+
     components: {
         Button,
         PageTitle,
@@ -35,6 +43,14 @@ export default {
     },
 
     methods: {
+        calculateDaysDifference() {
+            if ( this.currentDate && this.endDate) {
+                const duration = moment.duration(this.endDate.diff(this.currentDate));
+                this.daysDifference = duration.as('days');
+            } else {
+                console.error('Invalid start or end date');
+            }
+        },
         navigateUpdateInfoPage() {
             this.$router.push(`/updateprofile${this.id}`)
         },
@@ -56,7 +72,7 @@ export default {
         handleFileChange(event) {
             this.selectedFile = event.target.files[0];
         },
-         uploadFileToDatabase() {
+        uploadFileToDatabase() {
             if (!this.selectedFile) {
                 console.log('No file selected.');
                 return;
@@ -104,10 +120,11 @@ export default {
 
                         </li>
                         <li class="list-group-item">
-                            <label>Select your CV   
+                            <label>Select your CV
                                 <input class="form-control" type="file" id="formFile" @change="handleFileChange">
                             </label>
-                            <button type="button" class="btn btn-link text-decoration-none" @click="uploadFileToDatabase">Upload CV</button>
+                            <button type="button" class="btn btn-link text-decoration-none"
+                                @click="uploadFileToDatabase">Upload CV</button>
                         </li>
 
                     </ul>
@@ -132,8 +149,9 @@ export default {
                             <li class="list-group-item">Internship Staring Date: {{ this.startDate= new
                                 Date(this.userInfo.startDate).toLocaleDateString('tr-TR') }}</li>
                             <li class="list-group-item">Internship Ending Date: {{ this.endDate= new
-                                Date(this.userInfo.endDate).toLocaleDateString('tr-TR') }}</li>
-                            <li class="list-group-item">Remaining Days:</li>
+                                Date(this.userInfo.endDate).toLocaleDateString('tr-TR') }}
+                            </li>
+                            <li class="list-group-item">Remaining Days: {{ daysDifference }}</li>
                         </ul>
                     </div>
                 </div>
