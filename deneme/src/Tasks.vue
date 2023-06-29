@@ -17,16 +17,36 @@ export default {
         goAddTasks() {
             this.$router.push("addtask")
         },
+        fetchTasks() {
+            axios.get(this.baseUrl + "Task/GetTasks")
+                .then(response => {
+                    this.dbTasks = response.data.map(task => {
+                        const taskProgress = task.checkProgres ? "On Going" : "Not Started";
+                        return { ...task, taskProgress };
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        startTask() {
+            axios.put(this.baseUrl + `Task/ChangeTaskProgres?id=${task.taskId}`)
+                .then(response => {
+                    if (response.data.success) {
+                        task.checkProgres = true;
+                    } else {
+                        console.error(response.data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
     },
     mounted() {
-        axios.get(this.baseUrl+"Task/GetTasks")
-            .then((response) => {
-                this.dbTasks = response.data
-                console.log(response.data)
-            })
-    },
-}
-
+        this.fetchTasks();
+    }
+};
 </script>
 
 <template>
@@ -47,6 +67,7 @@ export default {
                     <th scope="col" class="fs-5 px-4">Task Sender</th>
                     <th scope="col" class="fs-5 px-4">Task Details</th>
                     <th scope="col" class="fs-5 px-4">Task Details</th>
+                    <th scope="col" class="fs-5 px-4">Start Task</th>
                     <th scope="col" class="fs-5 px-4">Complete Task</th>
 
                 </tr>
@@ -57,11 +78,13 @@ export default {
                     <td class="fs-5 px-4">{{ tasks.taskName }}</td>
                     <td class="fs-5 px-4">{{ tasks.taskSender }}</td>
                     <td class="fs-5 px-4">{{ tasks.taskDetails }}</td>
-                    <td class="fs-5 px-4">
-                        <button class="btn btn-primary px-4 mx-3"><i class="bi bi-info-lg px-2" style="font-size: 1.3rem;"></i></button>
+                    <td class="fs-5 px-4">{{ tasks.taskProgress }}</td>
+                    <td class="fs-5">
+                        <button @click="startTask(task)" class="btn btn-warning px-4 mx-5">Start</button>
                     </td>
                     <td class="fs-5">
-                        <button class="btn btn-success px-4 mx-3"><i class="bi bi-check-lg" style="font-size: 1.3rem;"></i></button>
+                        <button class="btn btn-success px-4 mx-5"><i class="bi bi-check-lg"
+                                style="font-size: 1.3rem;"></i></button>
                     </td>
                 </tr>
             </tbody>
