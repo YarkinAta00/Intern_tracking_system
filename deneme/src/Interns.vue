@@ -28,7 +28,7 @@
                                     class="bi bi-info-lg px-3" style="font-size: 1.3rem;"></i></router-link>
                         </td>
                         <td class="fs-5">
-                            <button onclick="deleteIntern(dbIntern.id)" type="button" class="btn btn-danger px-4 mx-5"><i
+                            <button @click="deleteIntern(dbIntern.id)" type="button" class="btn btn-danger px-4 mx-5"><i
                                     class="bi bi-trash" style="font-size: 1.3rem;"></i></button>
                         </td>
                     </tr>
@@ -42,7 +42,7 @@
 import Button from './components/Button.vue'
 import ProfileNavigateButton from './components/ProfileNavigateButton.vue'
 import PageTitle from './components/PageTitle.vue'
-import axios from 'axios'
+import InternService from './InternService.js'
 export default {
     data() {
         return {
@@ -50,8 +50,9 @@ export default {
             baseURL: `https://localhost:7270/api/`,
         }
     },
-    mounted() {
-        this.showInterns();
+
+    created() {
+        this.getInterns();
     },
     components: {
         Button,
@@ -59,22 +60,31 @@ export default {
         ProfileNavigateButton,
     },
     methods: {
-        showInterns() {
-            axios.get(this.baseURL + `InternshipTracker/GetUsers`)
-                .then((response) => {
+        getInterns() {
+            try {
+                InternService.showInterns().then((response) => {
                     this.dbInterns = response.data;
-                    console.log(response.data)
-                })
+                    console.log(response.data);
+                });
+            }
+            catch (error) {
+                console.error('Error fetching user data:', error);
+            }
         },
         deleteIntern(id) {
-            axios.delete(this.baseURL + `InternshipTracker/DeleteUser?id=${id}`)
-                .then((response) => { console.log(response.data) })
+            try {
+                InternService.deleteIntern(id).then((response) => {
+                    console.log(response.data);
+                });
+            }
+            catch (error) {
+                console.error('Error fetching user data:', error);
+            }
         },
     },
 }
 </script>
 <style>
-
 .my-custom-scrollbar {
     position: relative;
     height: 200px;

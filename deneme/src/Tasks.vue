@@ -1,7 +1,7 @@
 <script>
 import Button from './components/Button.vue'
 import PageTitle from './components/PageTitle.vue';
-import axios from 'axios';
+import TaskService from './TaskService.js'
 export default {
     components: {
         PageTitle,
@@ -11,14 +11,15 @@ export default {
         return {
             dbTasks: {},
             baseUrl: "https://localhost:7270/api/",
+            isStarted: false,
         }
     },
     methods: {
         goAddTasks() {
             this.$router.push("addtask")
         },
-        fetchTasks() {
-            axios.get(this.baseUrl + "Task/GetTasks")
+        GetTasks() {
+            TaskService.getAllTasks()
                 .then(response => {
                     this.dbTasks = response.data.map(task => {
                         const taskProgress = task.checkProgres ? "On Going" : "Not Started";
@@ -44,7 +45,7 @@ export default {
         },
     },
     mounted() {
-        this.fetchTasks();
+        this.GetTasks();
     }
 };
 </script>
@@ -80,7 +81,8 @@ export default {
                     <td class="fs-5 px-4">{{ tasks.taskDetails }}</td>
                     <td class="fs-5 px-4">{{ tasks.taskProgress }}</td>
                     <td class="fs-5">
-                        <button @click="startTask(task)" class="btn btn-warning px-4 mx-5">Start</button>
+                        <button @click="startTask(task)" :disabled="isStarted"
+                            class="btn btn-warning px-4 mx-5">Start</button>
                     </td>
                     <td class="fs-5">
                         <button class="btn btn-success px-4 mx-5"><i class="bi bi-check-lg"
